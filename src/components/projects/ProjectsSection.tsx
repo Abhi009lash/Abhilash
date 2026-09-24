@@ -132,18 +132,13 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* LogoLoop Tech Marquee */}
-        <div className="pt-8 border-t border-neutral-900/60">
-          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 text-center mb-6">
-            Core Technologies & Engineering Stack
-          </p>
+        <div className="pt-6">
           <LogoLoop
             logos={techLogos}
-            speed={18}
+            speed={14}
             direction="left"
-            logoHeight={38}
-            gap={24}
-            hoverSpeed={6}
-            scaleOnHover
+            logoHeight={44}
+            gap={60}
             fadeOut
             fadeOutColor="#000000"
             ariaLabel="Core Technologies"

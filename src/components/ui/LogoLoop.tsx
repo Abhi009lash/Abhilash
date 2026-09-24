@@ -24,12 +24,12 @@ export interface LogoLoopProps {
 
 export const LogoLoop: React.FC<LogoLoopProps> = ({
   logos,
-  speed = 40,
+  speed = 14,
   direction = 'left',
   logoHeight = 40,
   gap = 48,
-  hoverSpeed = 0,
-  scaleOnHover = true,
+  hoverSpeed,
+  scaleOnHover = false,
   fadeOut = true,
   fadeOutColor = '#000000',
   ariaLabel = 'Technology partners',
@@ -40,7 +40,7 @@ export const LogoLoop: React.FC<LogoLoopProps> = ({
   const isHorizontal = direction === 'left' || direction === 'right';
   const isReverse = direction === 'right' || direction === 'down';
 
-  // Calculate animation duration
+  // Calculate animation duration (if hoverSpeed is undefined, speed is always steady)
   const activeSpeed = isHovered && hoverSpeed !== undefined ? hoverSpeed : speed;
   const duration = activeSpeed > 0 ? 1000 / activeSpeed : 0;
 
@@ -55,11 +55,11 @@ export const LogoLoop: React.FC<LogoLoopProps> = ({
     <div
       role="region"
       aria-label={ariaLabel}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden w-full ${className}`}
+      onMouseEnter={() => hoverSpeed !== undefined && setIsHovered(true)}
+      onMouseLeave={() => hoverSpeed !== undefined && setIsHovered(false)}
+      className={`relative overflow-hidden w-full pointer-events-none ${className}`}
       style={{
-        height: isHorizontal ? `${logoHeight + 36}px` : '100%',
+        height: isHorizontal ? `${logoHeight + 20}px` : '100%',
       }}
     >
       {/* Edge Fade Out Overlays */}
@@ -78,31 +78,32 @@ export const LogoLoop: React.FC<LogoLoopProps> = ({
           gap: `${gap}px`,
           animation: duration > 0 ? `logo-loop-scroll ${duration}s linear infinite` : 'none',
           animationDirection: isReverse ? 'reverse' : 'normal',
-          animationPlayState: activeSpeed === 0 ? 'paused' : 'running',
+          animationPlayState: 'running',
         }}
       >
         {duplicatedLogos.map((item, idx) => {
           const content = (
             <div
-              className={`flex items-center gap-2.5 px-4 py-2 rounded-xl bg-neutral-950/70 border border-neutral-800/80 hover:border-purple-500/50 hover:bg-neutral-900 text-neutral-300 hover:text-white transition-all duration-200 cursor-default shadow-sm ${
-                scaleOnHover ? 'hover:scale-105' : ''
+              className={`flex items-center justify-center text-white/90 select-none ${
+                scaleOnHover ? 'hover:scale-125 transition-transform duration-300' : ''
               }`}
               style={{ height: `${logoHeight}px` }}
+              title={item.title}
+              aria-label={item.title}
             >
               {item.src ? (
                 <img
                   src={item.src}
                   alt={item.alt ?? item.title ?? 'logo'}
-                  style={{ height: `${logoHeight - 12}px` }}
-                  className="object-contain filter grayscale hover:grayscale-0 transition-all"
+                  style={{ height: `${logoHeight}px` }}
+                  className="object-contain filter brightness-200"
                 />
               ) : item.node ? (
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                   {item.node}
                 </div>
-              ) : null}
-              {item.title && (
-                <span className="text-xs sm:text-sm font-semibold tracking-wide select-none whitespace-nowrap">
+              ) : (
+                <span className="text-sm font-semibold tracking-wide select-none whitespace-nowrap">
                   {item.title}
                 </span>
               )}
