@@ -95,8 +95,6 @@ export const AccordionGallery: React.FC<AccordionGalleryProps> = ({
                   <div className="pt-2">
                     <a
                       href={item.link}
-                      target="_blank"
-                      rel="noreferrer"
                       aria-label={`Visit ${item.label}`}
                       className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/15 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/25 transition-all duration-200 active:scale-90 shadow-md group/btn"
                     >

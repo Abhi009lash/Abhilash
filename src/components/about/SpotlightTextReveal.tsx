@@ -90,7 +90,7 @@ export const SpotlightTextReveal: React.FC<SpotlightTextRevealProps> = ({
       onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className={`relative select-none cursor-default ${className}`}
+      className={`relative select-none cursor-default overflow-hidden ${className}`}
     >
       {/* Base Layer: Warm beige off-white text with highlight words */}
       <div className={`${contentClassName} text-[#d6cfb8] transition-colors duration-300`}>

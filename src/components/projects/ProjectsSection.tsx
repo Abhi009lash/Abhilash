@@ -1,6 +1,7 @@
 import React from 'react';
 import { AccordionGallery, type AccordionGalleryItem } from '../gallery/AccordionGallery';
 import { LogoLoop, type LogoItem } from '../ui/LogoLoop';
+import heroImg from '../../assets/ai-voice-assistant-hero.jpg';
 import {
   PythonIcon,
   FastApiIcon,
@@ -29,8 +30,8 @@ const projectGalleryItems: AccordionGalleryItem[] = [
     label: 'AI Voice Assistance',
     category: 'Autonomous Speech & AI',
     badge: 'AI & Voice',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=900&auto=format&fit=crop',
-    link: '#',
+    image: heroImg,
+    link: '#ai-voice-assistant',
     color: 'from-purple-900/80 via-indigo-950/50 to-black',
   },
   {
