@@ -1,0 +1,148 @@
+.gooey-nav-wrapper {
+  --color-1: #ffffff;
+  --color-2: #c084fc;
+  --color-3: #818cf8;
+  --color-4: #38bdf8;
+  background: transparent !important;
+}
+
+.gooey-nav-wrapper .effect {
+  position: absolute;
+  opacity: 1;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  background: transparent;
+}
+
+.gooey-nav-wrapper .effect.text {
+  color: white;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  background: transparent;
+}
+
+.gooey-nav-wrapper .effect.text.active {
+  color: black;
+}
+
+.gooey-nav-wrapper .effect.filter {
+  filter: url(#gooey-nav-filter);
+  background: transparent;
+}
+
+.gooey-nav-wrapper .effect.filter::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  transform: scale(0);
+  opacity: 0;
+  z-index: 1;
+  border-radius: 9999px;
+}
+
+.gooey-nav-wrapper .effect.active::after {
+  animation: gooey-pill 0.3s ease both;
+}
+
+@keyframes gooey-pill {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gooey-nav-wrapper .particle,
+.gooey-nav-wrapper .point {
+  display: block;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  transform-origin: center;
+}
+
+.gooey-nav-wrapper .particle {
+  --time: 5s;
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  animation: gooey-particle calc(var(--time)) ease 1 -350ms;
+}
+
+.gooey-nav-wrapper .point {
+  background: var(--color, white);
+  opacity: 1;
+  animation: gooey-point calc(var(--time)) ease 1 -350ms;
+}
+
+@keyframes gooey-particle {
+  0% {
+    transform: rotate(0deg) translate(calc(var(--start-x)), calc(var(--start-y)));
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+  }
+  70% {
+    transform: rotate(calc(var(--rotate) * 0.5)) translate(calc(var(--end-x) * 1.2), calc(var(--end-y) * 1.2));
+    opacity: 1;
+    animation-timing-function: ease;
+  }
+  85% {
+    transform: rotate(calc(var(--rotate) * 0.66)) translate(calc(var(--end-x)), calc(var(--end-y)));
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(calc(var(--rotate) * 1.2)) translate(calc(var(--end-x) * 0.5), calc(var(--end-y) * 0.5));
+    opacity: 1;
+  }
+}
+
+@keyframes gooey-point {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+  }
+  25% {
+    transform: scale(calc(var(--scale) * 0.25));
+  }
+  38% {
+    opacity: 1;
+  }
+  65% {
+    transform: scale(var(--scale));
+    opacity: 1;
+  }
+  85% {
+    transform: scale(var(--scale));
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.gooey-nav-wrapper li.active {
+  color: black;
+  text-shadow: none;
+}
+
+.gooey-nav-wrapper li.active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gooey-nav-wrapper li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: white;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
