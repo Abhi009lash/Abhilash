@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "lucide-react": "^1.48.0",
     "motion": "^13.4.3",
+    "nodemailer": "^6.10.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@types/three": "^0.186.0",

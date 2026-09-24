@@ -1,4 +1,5 @@
 import React from 'react';
+import { AccordionGallery, type AccordionGalleryItem } from '../gallery/AccordionGallery';
 import { LogoLoop, type LogoItem } from '../ui/LogoLoop';
 import {
   PythonIcon,
@@ -23,49 +24,62 @@ import {
   AiAgentsIcon,
 } from './techIcons';
 
-export interface ProjectItem {
-  title: string;
-  category: string;
-  color: string;
-  badge: string;
-}
-
-const projects: ProjectItem[] = [
+const projectGalleryItems: AccordionGalleryItem[] = [
   {
-    title: 'AI Voice Assistance',
+    label: 'AI Voice Assistance',
     category: 'Autonomous Speech & AI',
-    color: 'from-purple-600/30 to-indigo-600/20',
     badge: 'AI & Voice',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=900&auto=format&fit=crop',
+    link: '#',
+    color: 'from-purple-900/80 via-indigo-950/50 to-black',
   },
   {
-    title: 'WhatsApp Service',
+    label: 'WhatsApp Service',
     category: 'Automated Messaging & Bots',
-    color: 'from-emerald-600/30 to-teal-600/20',
     badge: 'Automation',
+    image: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=900&auto=format&fit=crop',
+    link: '#',
+    color: 'from-emerald-900/80 via-teal-950/50 to-black',
   },
   {
-    title: 'IBunify CRM',
+    label: 'IBunify CRM',
     category: 'Enterprise SaaS Platform',
-    color: 'from-blue-600/30 to-cyan-600/20',
     badge: 'Full-Stack',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=900&auto=format&fit=crop',
+    link: '#',
+    color: 'from-blue-900/80 via-cyan-950/50 to-black',
   },
   {
-    title: 'IBunify Mobile App',
+    label: 'IBunify Mobile App',
     category: 'Cross-Platform Mobile',
-    color: 'from-violet-600/30 to-fuchsia-600/20',
     badge: 'Mobile App',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=900&auto=format&fit=crop',
+    link: '#',
+    color: 'from-violet-900/80 via-fuchsia-950/50 to-black',
   },
   {
-    title: 'Karnik Website',
+    label: 'AI Dynamic Dashboard',
+    category: 'Autonomous Analytics & Intelligence',
+    badge: 'AI Dashboard',
+    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=900&auto=format&fit=crop',
+    link: '#',
+    color: 'from-cyan-900/80 via-indigo-950/50 to-black',
+  },
+  {
+    label: 'Karnik Website',
     category: 'Corporate Web Platform',
-    color: 'from-amber-600/30 to-orange-600/20',
     badge: 'Web App',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=900&auto=format&fit=crop',
+    link: '#',
+    color: 'from-amber-900/80 via-orange-950/50 to-black',
   },
   {
-    title: 'Mahanagar Properties Website',
+    label: 'Mahanagar Properties',
     category: 'Real Estate Portal',
-    color: 'from-sky-600/30 to-blue-600/20',
     badge: 'Portal',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=900&auto=format&fit=crop',
+    link: '#',
+    color: 'from-sky-900/80 via-blue-950/50 to-black',
   },
 ];
 
@@ -101,38 +115,18 @@ export const ProjectsSection: React.FC = () => {
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-purple-900/10 blur-[180px] pointer-events-none" />
 
-      <div className="max-w-7xl w-full mx-auto space-y-16 z-10">
-
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {projects.map((proj, idx) => (
-            <div
-              key={idx}
-              className="group relative rounded-2xl bg-neutral-950/60 border border-neutral-800/80 hover:border-neutral-700 transition-all duration-300 overflow-hidden hover:-translate-y-1 shadow-lg"
-            >
-              {/* Card with Gradient & Glow */}
-              <div className={`h-40 w-full bg-gradient-to-br ${proj.color} p-6 flex flex-col justify-between relative overflow-hidden`}>
-                <div className="flex items-center justify-between z-10">
-                  <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-black/40 backdrop-blur-md text-white border border-white/10">
-                    {proj.badge}
-                  </span>
-                  <span className="text-xs text-neutral-400 font-mono">0{idx + 1}</span>
-                </div>
-                <div className="z-10">
-                  <span className="text-xs text-neutral-400 block mb-1 font-medium tracking-wide">
-                    {proj.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
-                    {proj.title}
-                  </h3>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="max-w-5xl w-full mx-auto space-y-10 z-10">
+        {/* AccordionGallery Interactive Showcase */}
+        <AccordionGallery
+          items={projectGalleryItems}
+          defaultIndex={0}
+          expandRatio={0.45}
+          trigger="hover"
+          height="360px"
+        />
 
         {/* LogoLoop Tech Marquee */}
-        <div className="pt-6">
+        <div className="pt-4">
           <LogoLoop
             logos={techLogos}
             speed={14}
